@@ -1,0 +1,110 @@
+WindowManager:
+	MainScreen:
+	AddBook:
+	FindBook:
+
+<MainScreen>:
+	name: "main"
+
+	canvas.before:
+		Rectangle:
+            size: self.size
+			source: "Images/Library.jpg"
+
+	RelativeLayout:
+		Label:
+			text: "Ի մ   Գ ր ա դ ա ր ա ն ը"
+			font_name: 'fonts/Artsakh-Font .ttf'			
+			pos_hint: { "center_x": .5, "center_y": .8}
+			font_size: 40
+
+		Button:
+			text: "Նոր Գիրք"
+			background_normal: ''
+        	background_color: .94, .35, .13, 1
+			font_name: 'fonts/davel-aghvor.otf'
+			font_size: 40			
+			pos_hint: { "center_x": .5, "center_y": .6}
+			size_hint: 0.2, 0.15
+			on_release: 
+				app.root.current = "add_book"
+				root.manager.transition.direction = "right"
+
+		Button:
+			text: "Գտնել Գիրք"
+			background_normal: ''
+        	background_color: .14, .12, .13, .95
+			font_name: 'fonts/davel-aghvor.otf'			
+			font_size: 40
+			size_hint: 0.2, 0.15
+			pos_hint: { "center_x": .5, "center_y": .4}
+			on_release: 
+				app.root.current = "find_book"
+				root.manager.transition.direction = "left"
+
+<AddBook>:
+	name: "add_book"
+	author: author
+	canvas.before:
+		Color:
+			rgba: .94, .35, .13, 0.98
+		Rectangle:
+            size: self.size
+
+	RelativeLayout:
+		Label:
+			text: "Հեղինակ"
+			font_name: 'fonts/Artsakh-Font .ttf'			
+			font_size: 30
+			pos_hint: { "center_x": .3, "center_y": .45	}
+			size_hint: 0.2, 0.15
+
+		TextInput:
+            id: input
+            hint_text:'Enter text'
+            pos_hint: {'center_x': 0.5, 'center_y': 0.45}
+            size_hint: 0.2, 0.15
+            on_text: app.process()
+		
+		TextInput:
+            id: author
+            hint_text:'Enter Author'
+            pos_hint: {'center_x': 0.5, 'center_y': 0.45}
+            multiline: 0
+            on_text: app.process()
+					
+		Label:
+			text: "Լեզու"
+			font_name: 'fonts/Artsakh-Font .ttf'			
+			font_size: 30
+			pos_hint: { "center_x": .3, "center_y": .65}
+			size_hint: 0.2, 0.15
+
+		Button:
+			text: "Հին Գիրք"
+			background_normal: ''
+        	background_color: .94, .35, .13, 1
+			font_name: 'fonts/davel-aghvor.otf'
+			font_size: 30			
+			pos_hint: { "center_x": .5, "center_y": .65}
+			size_hint: 0.2, 0.15
+			on_release: 
+
+<FindBook>:
+	name: "find_book"
+
+	BoxLayout:
+		orientation: "vertical"
+		size: (root.width)/2, (root.height)/2
+
+		Label:
+			text: "Text11"
+			font_size: 25
+
+		Button:
+			text: "Text22"
+			font_size: 25
+			on_release: 
+				app.root.current = "main"
+				root.manager.transition.direction = "right"
+
